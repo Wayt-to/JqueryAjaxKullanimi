@@ -112,6 +112,7 @@
     <Content Include="Assets\Bootstrap\js\bootstrap.min.js" />
     <Content Include="Assets\jquery-3.7.1\jquery-3.7.1.min.js" />
     <Content Include="Dosyalar\ajaxtest.txt" />
+    <Content Include="Dosyalar\HtmlPage1.html" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>

@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Assets/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="" id="div1" style="justify-content:center">
+            <h3>Jquery Test Alanı</h3>
+        </div>
+        <button class="btn btn-success">Dışarıdan Veri Al</button>
+        <div>
+            <h2>Ajax : Asynchronus Javascript and XML</h2>
+            <p>Browser Uygulamalarında backend ve ui arasında iletişim amacıyla kullanılır</p>
+        </div>
+    </div>
+    <script src="~/Assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $("#div1").load("../../Dosyalar/ajaxtest.txt", function (donustxt, durumtxt, xhr) {
+                    if (durumtxt == "success") { alert("Dosya başarıyla yüklendi"); }
+                    if (durumtxt == "error") { alert("HATA: " + xhr.status + " - " + xhr.statusText); }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SehirIlceSec</title>
+</head>
+<body>
+    <div> 
+        @Html.DropDownList("city_ID", null, htmlAttributes: new { @id = "city_ID" })
+        <br />
+        @Html.DropDownList("county_ID", null, htmlAttributes: new { @id = "county_ID" })
+    </div>
+    <script src="~/Assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#city_ID").change(function () {
+                var cid = $(this).val();
+                $.ajax({
+                    type: "POST",
+                    url:'@Url.Action("LoadCounties","Default")',
+                    data: { cityid: cid },
+                    success: successFunction,
+                    error: errorFunction
+                });
+                function successFunction(data){
+                    var droplist = $("#county_ID");
+                    droplist.empty();
+                    $.each(data, function (index, item) {
+                        droplist.append($('<option/>', { value: item.ID, text: item.Name }));
+                    });
+                }
+                function errorFunction() {
+                    alert("Seçim Hatası");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

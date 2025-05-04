@@ -1,0 +1,56 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SehirGetir</title>
+    <link href="~/Assets/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div style="margin-top:10px">
+            <input type="type" id="sehirID" name="name" value="" class="" placeholder="Şehir İdsi Gir" />
+            <input type="submit" id="sehirGetir" name="name" value="Şehir Getir" class="btn btn-success" />
+            <br />
+        </div>
+        <div>
+            <p>Şehir Idsi : <strong id="gelenSehirID"></strong></p>
+            <p>Şehir Adı: <strong id="gelenSehirAdi"></strong></p>
+        </div>
+    </div>
+   
+    <script src="~/Assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
+    <script src="~/Assets/Bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#sehirGetir").click(function () {
+                $("#sehirID").css({ "border": "1px solid black" })
+                var ID = $("#sehirID").val();
+                if (ID != "") {
+                    $.ajax({
+                        url: '/Default/getCity/' + ID,
+                        type: 'POST',
+                        datatype: 'json',
+                        success: function (data) {
+                            $("#gelenSehirID").html(data.ID)
+                            $("#gelenSehirAdi").html(data.Name)
+                        },
+                        error: function () {
+                            alert("Hata Oluştu!")
+                        }
+                    })
+                }
+                else {
+                    $("#sehirID").css({"border":"1px solid red"})
+                }
+                
+            })
+        })
+    </script>
+</body>
+</html>

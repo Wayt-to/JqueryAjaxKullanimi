@@ -1,1 +1,1 @@
-#Jquery Ajax Kullanımı
+#Jquery Ajax Kullanımı Hakkında
